@@ -1,33 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from 'react';
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import { User } from './entities/user';
+import { LoadingState } from './enums/loading';
+import { HomePage } from './pages/home';
+import { LoaderScreen } from './pages/loader';
+import { LoginPage } from './pages/login';
+import './scss/styles.scss';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [loading, setLoading] = useState(LoadingState.LOADING);
+  const [user, setUser] = useState<User>();
+  const navigate = useNavigate();
+
+  async function validateUser() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(undefined);
+      }, 5000);
+    })
+  }
+
+  useEffect(() => {
+    async function init() {
+      const user = await validateUser();
+      setLoading(LoadingState.NONE);
+      if (!user) navigate("/flow/login");
+      else navigate(location.pathname || "/home");
+    }
+
+    init();
+  }, []);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {loading === LoadingState.LOADING ? (
+        <LoaderScreen />
+      ) : (
+        <Routes >
+          <Route path='/home' element={<HomePage />} />
+          <Route path='/flow/login' element={<LoginPage />} />
+        </Routes>
+      )}
     </>
   )
 }

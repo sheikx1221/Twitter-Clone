@@ -1,0 +1,22 @@
+div[role=button] {
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+    width: 50% !important;
+}
+
+div[role=button]:hover {
+    background: rgb(210, 227, 252);
+    transition: background-color .218s, border-color .218s;
+}
+
+@media (max-width: 998px) {
+    div[role=button] {
+        width: 75% !important;
+    }
+}
+
+@media (max-width: 768px) {
+    div[role=button] {
+        width: 100% !important;
+    }
+}

@@ -1,0 +1,23 @@
+@import "~bootstrap/scss/bootstrap.scss";
+
+h1, h2, h3, h4, h5 {
+    font-family: TwitterChirpExtendedHeavy;
+    &.basic {
+        font-family: TwitterChirp;
+    }
+    &.bold {
+        font-weight: bolder;
+    }
+}
+p {
+    font-family: TwitterChirp;
+    &.light {
+        font-weight: 400;
+    }
+    &.dark {
+        font-weight: bold;
+    }
+    &.darker {
+        font-weight: bolder;
+    }
+}

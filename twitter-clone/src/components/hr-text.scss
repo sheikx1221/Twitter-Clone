@@ -1,0 +1,17 @@
+div.hr-text {
+    width: 50%;
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+}
+
+@media (max-width: 998px) {
+    div.hr-text {
+        width: 75%;
+    }
+}
+
+@media (max-width: 768px) {
+    div.hr-text {
+        width: 100%;
+    }
+}
