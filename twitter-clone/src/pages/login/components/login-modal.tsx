@@ -11,6 +11,8 @@ interface Props {
 }
 export function LoginModal(props: Props) {
     const [credentials, setCredentials] = useState<string>();
+    const [password, setPassword] = useState<string>();
+
     return (
         <div
             className="d-flex justify-content-center align-items-center"
@@ -34,12 +36,10 @@ export function LoginModal(props: Props) {
                     </div>
                 </div>
                 <div
-                    style={{ margin: '5% 25% auto', height: 'inherit' }}
-                >
+                    style={{ margin: '5% 25% auto', height: 'inherit' }}>
                     <div 
                         className="d-flex row justify-content-around"
-                        style={{ height: '70%' }}
-                    >
+                        style={{ height: '70%' }}>
                         <h2 className="basic bold">
                             Sign in to X
                         </h2>
