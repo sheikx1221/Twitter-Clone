@@ -18,7 +18,7 @@ export function LoginModal(props: Props) {
     const navigate = useNavigate();
     const userContext = useContext(UserContext);
     const [credentials, setCredentials] = useState<string>();
-    const [password, setPassword] = useState<string>("admin123");
+    const [password] = useState<string>("admin123");
 
     async function login() {
         if (credentials && password) {
