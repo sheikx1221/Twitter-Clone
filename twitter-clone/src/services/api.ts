@@ -5,12 +5,15 @@ import { imageOrDefaultImage } from '../utils/functions';
 class ApiService {
     private readonly axiosInstance: AxiosInstance;
     private user?: string;
-    private baseURL: string = 'http://localhost:3000';
+    private baseURL: string = 'https://splendorous-shortbread-c74aa2.netlify.app';
 
     constructor() {
         this.axiosInstance = axios.create({
             baseURL: this.baseURL,
-            timeout: 6000
+            timeout: 6000,
+            headers: {
+                "Access-Control-Allow-Origin": "*"
+            }
         });
     }
 
@@ -21,7 +24,7 @@ class ApiService {
             });
 
             this.axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${response.data.access_token}`;
-            this.baseURL = "http://localhost:3000/api";
+            this.baseURL = "https://splendorous-shortbread-c74aa2.netlify.app/api";
             this.user = response.data.id;
             return response.data;
         }
@@ -38,7 +41,7 @@ class ApiService {
             });
 
             this.axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${response.data.access_token}`;
-            this.baseURL = "http://localhost:3000/api";
+            this.baseURL = "https://splendorous-shortbread-c74aa2.netlify.app/api";
             this.user = response.data.id;
             return response.data;
         }
