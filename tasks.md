@@ -10,6 +10,6 @@
 | FE 005 | User profiling                              | Medium     | 2h  |      2h      |
 | BE 001 | Authentication / JWT                        | Medium     | 1h  |      3h      |
 | BE 002 | DB / Schemas / Seed File / User Creation    | Medium     | 2h  |      2h      |
-| BE 003 | API Implementations                         | Hard       | 5h  |              |
+| BE 003 | API Implementations                         | Hard       | 5h  |      4h      |
 | DB 001 | Using seed, generates tables and users      | Hard       | 4h  |      2h      |
-| DB 002 | Optimize queries                            | Hard       | 4h  |              |
+| DB 002 | Optimize queries                            | Hard       | 4h  |      --      |
