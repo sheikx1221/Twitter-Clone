@@ -14,4 +14,7 @@ export class AuthRegisterDto {
 
     @IsStrongPassword()
     password: string;
+
+    @IsString()
+    username: string;
 }

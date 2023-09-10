@@ -6,6 +6,7 @@ import { User } from 'src/users/entities/user.entity';
 import { Repository } from 'typeorm';
 import { AuthLoginDto } from './dto/login.dto';
 import { authConfig } from 'src/config/auth/auth';
+import { AuthRegisterDto } from './dto/register.dto';
 
 @Injectable()
 export class AuthService {
@@ -40,6 +41,21 @@ export class AuthService {
                 }),
             };
         }
+    }
+
+    async register(registerDto: AuthRegisterDto) {
+        const user = await this.userModal.save(registerDto);
+
+        const payload = { username: user.username, sub: user.id, email: user.email, phone: user.phone };
+        const access_token = this.jwtService.sign(payload, {
+            secret: authConfig.jwtSecret,
+            expiresIn: '24h'
+        });
+
+        delete user.password;
+        return {
+            ...user, access_token: access_token,
+        };
     }
 
     validateToken(token: string): boolean {

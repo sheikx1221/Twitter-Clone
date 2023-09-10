@@ -1,5 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 import { ServerError } from '../entities/utils';
+import { imageOrDefaultImage } from '../utils/functions';
 
 class ApiService {
     private readonly axiosInstance: AxiosInstance;
@@ -25,6 +26,23 @@ class ApiService {
             return response.data;
         }
         catch (err: any) {
+            console.log("err = ", err);
+            return new ServerError(err.message || "Unknown error", err.code || "500");
+        }
+    }
+
+    async register(fullName: string, email: string, phone: string, password: string, username: string) {
+        try {
+            const response = await this.axiosInstance.post("/auth/register", {
+                fullName, email, password, phone, username, profilePicture: imageOrDefaultImage()
+            });
+
+            this.axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${response.data.access_token}`;
+            this.baseURL = "http://localhost:3000/api";
+            this.user = response.data.id;
+            return response.data;
+        }
+        catch(err: any) {
             console.log("err = ", err);
             return new ServerError(err.message || "Unknown error", err.code || "500");
         }

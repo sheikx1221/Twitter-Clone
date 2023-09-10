@@ -1,5 +1,5 @@
 import { Tweet } from "../../../entities/tweet";
-import { getTimePassed } from "../../../utils/functions";
+import { getTimePassed, imageOrDefaultImage } from "../../../utils/functions";
 
 interface Props {
     tweet: Tweet;
@@ -8,7 +8,7 @@ export function TweetCard(props: Props) {
     return (
         <div className="post">
             <div className="left-column">
-                <img className="profile-image" src={props.tweet.user.profilePicture} />
+                <img className="profile-image" src={imageOrDefaultImage(props.tweet.user.profilePicture)} />
             </div>
             <div className="right-column">
                 <article className="top-row">

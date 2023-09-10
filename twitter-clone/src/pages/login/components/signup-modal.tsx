@@ -1,21 +1,27 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AppButton } from '../../../components/button';
 import { AppDateInput } from '../../../components/date';
 import { AppInput } from '../../../components/input';
 import { AppLink } from '../../../components/link';
-import { AppDate } from '../../../entities/utils';
+import { AppDate, ServerError } from '../../../entities/utils';
+import { UserContext } from '../../../providers/user';
+import { apiService } from '../../../services/api';
 import './signup-modal.scss';
 
 interface Props {
     closeModal: () => void;
 }
 export function SignupModal(props: Props) {
+    const navigate = useNavigate();
     const [step, setStep] = useState(1);
     const [otp, setOtp] = useState<string>();
     const [name, setName] = useState<string>();
+    const userContext = useContext(UserContext);
     const [email, setEmail] = useState<string>();
     const [phone, setPhone] = useState<string>();
     const [allowStep, setAllowStep] = useState(false);
+    const [username, setUsername] = useState<string>();
     const [password, setPassword] = useState<string>();
     const [dateOfBirth, setDateOfBirth] = useState<AppDate>();
     const [toggleCreds, setToggleCreds] = useState<"email" | "phone">("phone");
@@ -40,7 +46,22 @@ export function SignupModal(props: Props) {
     }, [name, email, phone, dateOfBirth, password, step, otp]);
     
     async function registerUser() {
-        
+        if (name && username && (email || phone) && password) {
+            const response = await apiService.register(name, email || "", phone || "", password, username);
+            if (response instanceof ServerError) {
+                alert("Sign up failed due to " + response.toString());
+                setStep(1);
+            }
+            else {
+                userContext.setUser(response);
+                props.closeModal();
+                navigate("/home");
+            }
+        }
+        else {
+            alert("Incomplete Fields");
+            setStep(1);
+        }
     }
 
     return (
@@ -274,12 +295,20 @@ export function SignupModal(props: Props) {
                             style={{ margin: '5% 10% auto', height: '60%' }}
                             className='d-flex flex-column justify-content-center'>
                             <h3 className='basic bold mb-4'>
-                                You'll need a password
+                                You'll need a username and password
                             </h3>
-                            <p >Make sure it's 8 characters or more.</p>
+                            <p >Make sure password is 8 characters or more.</p>
                             <div >
                                 <AppInput
                                     autoFocus
+                                    label='Username'
+                                    value={username}
+                                    onChange={(text) => setUsername(text)}
+                                    placeholder='Username'
+                                />
+                            </div>
+                            <div >
+                                <AppInput
                                     label='Password'
                                     value={password}
                                     onChange={(text) => setPassword(text)}
@@ -291,7 +320,10 @@ export function SignupModal(props: Props) {
                             <AppButton
                                 taste={allowStep ? "dark" : "disabled"}
                                 title='Next'
-                                onClick={() => setStep(6)}
+                                onClick={() => {
+                                    setStep(6);
+                                    registerUser();
+                                }}
                             />
                         </div>
                     </>

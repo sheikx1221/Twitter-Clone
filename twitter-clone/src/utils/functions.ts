@@ -45,3 +45,9 @@ export function getTimePassed(input: string): string {
         return `${years} year${years !== 1 ? 's' : ''} ago`;
     }
 }
+
+
+export function imageOrDefaultImage(image?: string) {
+    if (image) return image;
+    else return "https://icons-for-free.com/download-icon-people+person+profile+user+icon-1320186207447274965_0.svg";
+}

@@ -9,6 +9,7 @@ import { TweetCard } from './components/tweet-card';
 import { AppButton } from '../../components/button';
 import { AppLink } from '../../components/link';
 import { UserContext } from '../../providers/user';
+import { imageOrDefaultImage } from '../../utils/functions';
 
 export function HomePage() {
     const [loadTweets, setLoadTweets] = useState(LoadingState.LOADING);
@@ -68,7 +69,7 @@ export function HomePage() {
                 </header>
                 <div className="tweet">
                     <div className="left-column">
-                        <img className="profile-image" src={userContext.user?.profilePicture || "https://icons-for-free.com/download-icon-people+person+profile+user+icon-1320186207447274965_0.svg"} />
+                        <img className="profile-image" src={imageOrDefaultImage(userContext.user?.profilePicture)} />
                     </div>
                     <div className="right-column">
                         <form className="top-row">
