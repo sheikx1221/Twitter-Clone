@@ -4,6 +4,15 @@
 
 A modern web application built with cutting-edge technologies to replicate the essence of Twitter. It's developed using React for the frontend, Nest.js for the backend, PostgreSQL as the database, and hosted on the Netlify platform
 
+## Hosted on [Netlify](https://sprightly-licorice-a9578d.netlify.app/)
+To sign in, you can use one of the following credentials
+- jane_doe
+- peter_parker
+- bob_johnson
+- micheal_jackson
+- mary_smith
+- david_jones
+Click on Sign In button and enter the credentials or create your own user using Create Account
 
 ## Run Locally
 Clone the project
