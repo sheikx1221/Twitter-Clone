@@ -5,6 +5,7 @@ import { HomePage } from './pages/home';
 import { LoaderScreen } from './pages/loader';
 import { LoginPage } from './pages/login';
 import './scss/styles.scss';
+import { UserContextProvider } from './providers/user';
 
 function App() {
   const [loading, setLoading] = useState(LoadingState.LOADING);
@@ -35,10 +36,12 @@ function App() {
       {loading === LoadingState.LOADING ? (
         <LoaderScreen />
       ) : (
-        <Routes >
-          <Route path='/home' element={<HomePage />} />
-          <Route path='/flow/login' element={<LoginPage />} />
-        </Routes>
+        <UserContextProvider >
+          <Routes >
+            <Route path='/home' element={<HomePage />} />
+            <Route path='/flow/login' element={<LoginPage />} />
+          </Routes>
+        </UserContextProvider>
       )}
     </>
   )

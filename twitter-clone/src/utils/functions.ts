@@ -18,23 +18,30 @@ export function debounce<F extends (...args: any[]) => any>(
     };
 }
 
-export function timeAgo(input: string) {
+export function getTimePassed(input: string): string {
     const date = new Date(input);
-    const formatter = new Intl.RelativeTimeFormat('en');
-    const ranges: any = {
-        years: 3600 * 24 * 365,
-        months: 3600 * 24 * 30,
-        weeks: 3600 * 24 * 7,
-        days: 3600 * 24,
-        hours: 3600,
-        minutes: 60,
-        seconds: 1
-    };
-    const secondsElapsed = (date.getTime() - Date.now()) / 1000;
-    for (let key in ranges) {
-        if (ranges[key] < Math.abs(secondsElapsed)) {
-            const delta = secondsElapsed / ranges[key];
-            return formatter.format(Math.round(delta), key as any);
-        }
+    const now = new Date();
+    const secondsElapsed = Math.floor((now.getTime() - date.getTime()) / 1000);
+
+    if (secondsElapsed < 60) {
+        return `${secondsElapsed} second${secondsElapsed !== 1 ? 's' : ''} ago`;
+    } else if (secondsElapsed < 3600) {
+        const minutes = Math.floor(secondsElapsed / 60);
+        return `${minutes} minute${minutes !== 1 ? 's' : ''} ago`;
+    } else if (secondsElapsed < 86400) {
+        const hours = Math.floor(secondsElapsed / 3600);
+        return `${hours} hour${hours !== 1 ? 's' : ''} ago`;
+    } else if (secondsElapsed < 604800) {
+        const days = Math.floor(secondsElapsed / 86400);
+        return `${days} day${days !== 1 ? 's' : ''} ago`;
+    } else if (secondsElapsed < 2592000) {
+        const weeks = Math.floor(secondsElapsed / 604800);
+        return `${weeks} week${weeks !== 1 ? 's' : ''} ago`;
+    } else if (secondsElapsed < 31536000) {
+        const months = Math.floor(secondsElapsed / 2592000);
+        return `${months} month${months !== 1 ? 's' : ''} ago`;
+    } else {
+        const years = Math.floor(secondsElapsed / 31536000);
+        return `${years} year${years !== 1 ? 's' : ''} ago`;
     }
 }

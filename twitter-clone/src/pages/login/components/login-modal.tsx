@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { AppButton } from "../../../components/button";
 import { AppTextHR } from "../../../components/hr-text";
 import { AppInput } from "../../../components/input";
@@ -8,15 +8,17 @@ import './login-modal.scss';
 import { apiService } from "../../../services/api";
 import { ServerError } from "../../../entities/utils";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../../providers/user";
 
 interface Props {
     closeModal: () => void;
     openSignup: () => void;
 }
 export function LoginModal(props: Props) {
+    const navigate = useNavigate();
+    const userContext = useContext(UserContext);
     const [credentials, setCredentials] = useState<string>();
     const [password, setPassword] = useState<string>("admin123");
-    const navigate = useNavigate();
 
     async function login() {
         if (credentials && password) {
@@ -27,6 +29,7 @@ export function LoginModal(props: Props) {
             else {
                 props.closeModal();
                 navigate("/home");
+                userContext.setUser(response);
             }
         }
         else alert("Complete information first!");

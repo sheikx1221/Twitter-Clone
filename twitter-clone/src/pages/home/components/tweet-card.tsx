@@ -1,5 +1,5 @@
 import { Tweet } from "../../../entities/tweet";
-import { timeAgo } from "../../../utils/functions";
+import { getTimePassed } from "../../../utils/functions";
 
 interface Props {
     tweet: Tweet;
@@ -19,7 +19,7 @@ export function TweetCard(props: Props) {
                             </strong>
                             <span className="tag">@{props.tweet.user.username}</span>
                             <span className="dot">.</span>
-                            <span className="time">{timeAgo(props.tweet.createdAt)}</span>
+                            <span className="time">{getTimePassed(props.tweet.createdAt)}</span>
                         </div>
                         <div className="details">
                             <svg viewBox="0 0 24 24" aria-hidden="true">

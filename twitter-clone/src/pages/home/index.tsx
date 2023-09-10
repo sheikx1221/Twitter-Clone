@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { AppLeftSideBar } from './components/left-bar';
 import './index.scss';
 import { LoadingState } from '../../enums/loading';
@@ -8,11 +8,13 @@ import { ServerError } from '../../entities/utils';
 import { TweetCard } from './components/tweet-card';
 import { AppButton } from '../../components/button';
 import { AppLink } from '../../components/link';
+import { UserContext } from '../../providers/user';
 
 export function HomePage() {
     const [loadTweets, setLoadTweets] = useState(LoadingState.LOADING);
     const [tweets, setTweets] = useState<Tweet[]>([]);
     const [newTweet, setNewTweet] = useState<string>();
+    const userContext = useContext(UserContext);
 
     async function getTweets() {
         setLoadTweets(LoadingState.LOADING);
@@ -28,8 +30,7 @@ export function HomePage() {
 
     async function postTweet() {
         if (!!newTweet) {
-
-            const response = await apiService.post<Tweet, Tweet>("/tweets", {
+            const response = await apiService.post<Tweet, Tweet>("/me/tweets", {
                 content: newTweet,
                 //@ts-ignore
                 user: { id: apiService.getUser()! },
@@ -67,7 +68,7 @@ export function HomePage() {
                 </header>
                 <div className="tweet">
                     <div className="left-column">
-                        <img className="profile-image" src="https://pbs.twimg.com/profile_images/1412572443928109062/t83VHF1j_400x400.jpg" />
+                        <img className="profile-image" src={userContext.user?.profilePicture || "https://icons-for-free.com/download-icon-people+person+profile+user+icon-1320186207447274965_0.svg"} />
                     </div>
                     <div className="right-column">
                         <form className="top-row">
@@ -108,7 +109,7 @@ export function HomePage() {
                                             </circle>
                                         </g>
                                     </svg>
-                                </div>
+                                </div> 
                                 <div>
                                     <svg viewBox="0 0 24 24" aria-hidden="true">
                                         <g>

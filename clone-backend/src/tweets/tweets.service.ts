@@ -18,7 +18,8 @@ export class TweetsService {
 
   findAll() {
     return this.tweetsModal.find({
-      relations: ['user']
+      relations: ['user'],
+      order: { createdAt: "DESC" }
     });
   }
 

@@ -4,10 +4,11 @@ import { ServerError } from '../entities/utils';
 class ApiService {
     private readonly axiosInstance: AxiosInstance;
     private user?: string;
+    private baseURL: string = 'http://localhost:3000';
 
     constructor() {
         this.axiosInstance = axios.create({
-            baseURL: 'http://localhost:3000',
+            baseURL: this.baseURL,
             timeout: 6000
         });
     }
@@ -19,6 +20,7 @@ class ApiService {
             });
 
             this.axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${response.data.access_token}`;
+            this.baseURL = "http://localhost:3000/api";
             this.user = response.data.id;
             return response.data;
         }
@@ -30,10 +32,11 @@ class ApiService {
 
     async get<Request, Response>(endpoint: string, data?: Request) {
         try {
+            console.log(this.axiosInstance.defaults.baseURL);
             //@ts-ignore
-            const queryParams = new URLSearchParams(data).toString();
-            const url = `${endpoint}?${queryParams}`;
-            const response = await this.axiosInstance.get(url);
+            const queryParams = "?" + new URLSearchParams(data).toString();
+            const url = `${endpoint}${queryParams == "?" ? "": queryParams}`;
+            const response = await this.axiosInstance.get(url, { baseURL: this.baseURL });
 
             return response.data as Response;
         }
@@ -45,7 +48,7 @@ class ApiService {
 
     async post<Request, Response>(endpoint: string, data: Request) {
         try {
-            const response = await this.axiosInstance.post(endpoint, data);
+            const response = await this.axiosInstance.post(endpoint, data, { baseURL: this.baseURL });
             return response.data as Response;
         }
         catch(err: any) {
