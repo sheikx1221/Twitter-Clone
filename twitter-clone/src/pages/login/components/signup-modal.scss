@@ -28,6 +28,22 @@
     div.hr-text {
         width: 100% !important;
     }
+
+    div.checkbox-container {
+        padding: 5px;
+        padding-inline: 10px;
+        border-radius: 50%;
+        &:hover {
+            background-color: rgba(29, 155, 240, 0.1);
+        }
+
+        input[type=checkbox] {
+            padding: 10px;
+            color: white;
+            accent-color: #1D9BF0;
+            transform: scale(1.5);
+        }
+    }
 }
 
 @media (max-width: 748px) {

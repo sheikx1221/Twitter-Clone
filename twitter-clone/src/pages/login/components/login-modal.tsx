@@ -8,10 +8,11 @@ import './login-modal.scss';
 
 interface Props {
     closeModal: () => void;
+    openSignup: () => void;
 }
 export function LoginModal(props: Props) {
     const [credentials, setCredentials] = useState<string>();
-    const [password, setPassword] = useState<string>();
+    // const [password, setPassword] = useState<string>();
 
     return (
         <div
@@ -19,7 +20,7 @@ export function LoginModal(props: Props) {
             style={{ position: 'absolute', top: 0, right: 0, width: '100%', height: '100%', background: 'rgba(0, 0, 0, 0.6)' }}
         >
             <div id="modal-view">
-                <div className="mt-2">
+                <div className="mt-2 mb-4">
                     <div
                         className="close-button"
                         onClick={props.closeModal}
@@ -36,11 +37,11 @@ export function LoginModal(props: Props) {
                     </div>
                 </div>
                 <div
-                    style={{ margin: '5% 25% auto', height: 'inherit' }}>
+                    style={{ margin: '0% 25% auto', height: 'inherit' }}>
                     <div 
                         className="d-flex row justify-content-around"
                         style={{ height: '70%' }}>
-                        <h2 className="basic bold">
+                        <h2 className="basic dark">
                             Sign in to X
                         </h2>
                         <AppButton
@@ -60,7 +61,7 @@ export function LoginModal(props: Props) {
                             />
                         </div>
                         <AppButton
-                            taste="secondary"
+                            taste="dark"
                             title="Next"
                             onClick={() => { }}
                         />
@@ -71,13 +72,13 @@ export function LoginModal(props: Props) {
                         />
                     </div>
                     <div
-                        style={{ height: '10%' }}
-                        className="w-100 my-2 d-flex h-25 align-items-end"
+                        className="w-100 h-25 my-2 d-flex align-items-end"
                     >
-                        <p className="light">Don't have an account?</p>
+                        <p className="">Don't have an account?</p>
                         <AppLink
                             text="Sign up"
-                            link="http://localhost:3000/flow/register"
+                            link=""
+                            onClick={props.openSignup}
                         />
                     </div>
 

@@ -12,9 +12,10 @@ export function LoginPage() {
 
     const closeLoginModal = () => setLoginModal(false);
     const closeSignupModal = () => setSignupModal(false);
+    const openSignup = () => { setLoginModal(false); setSignupModal(true) };
     return (
         <>
-            {loginModal && <LoginModal closeModal={closeLoginModal} />}
+            {loginModal && <LoginModal closeModal={closeLoginModal} openSignup={openSignup} />}
             {signupModal && <SignupModal closeModal={closeSignupModal} />}
             <div id="main">
                 <div id="image">

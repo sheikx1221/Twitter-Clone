@@ -59,3 +59,14 @@ div#main {
     }
 }
 
+@media (max-width: 748px) {
+    div#main {
+        display: flex;
+    }
+    
+    body:has(div#modal-view) {
+        div#main {
+            display: none;
+        }
+    }
+}

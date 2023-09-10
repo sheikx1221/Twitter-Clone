@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import { User } from './entities/user';
 import { LoadingState } from './enums/loading';
 import { HomePage } from './pages/home';
 import { LoaderScreen } from './pages/loader';
@@ -9,7 +8,7 @@ import './scss/styles.scss';
 
 function App() {
   const [loading, setLoading] = useState(LoadingState.LOADING);
-  const [user, setUser] = useState<User>();
+  // const [user, setUser] = useState<User>();
   const navigate = useNavigate();
 
   async function validateUser() {

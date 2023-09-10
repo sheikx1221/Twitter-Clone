@@ -6,7 +6,9 @@ interface Props {
     value?: string;
     placeholder: string;
     onChange: (text: string) => void;
+    onFocus?: () => void;
     autoFocus?: boolean;
+    static?: boolean;
 }
 export function AppInput(props: Props) {
     return (
@@ -14,9 +16,14 @@ export function AppInput(props: Props) {
             <input
                 autoFocus={props.autoFocus}
                 type={props.type || "text"}
-                className="form-control"
+                className={`form-control`}
                 id="floatingInput"
                 placeholder={props.placeholder}
+                onChange={(e) => props.static ? undefined: props.onChange(e.target.value)}
+                onFocus={() => {
+                    if (props.static) props.onFocus ? props.onFocus(): undefined
+                }}
+                value={props.value}
             />
                 <label >{props.label}</label>
         </div>

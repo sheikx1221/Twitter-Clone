@@ -1,35 +1,74 @@
 @import "~bootstrap/scss/bootstrap.scss";
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
     font-family: TwitterChirpExtendedHeavy;
+
     &.basic {
         font-family: TwitterChirp;
     }
+
     &.dark {
         font-weight: bold;
     }
+
     &.light {
         font-weight: 400;
     }
 }
+
 p {
     font-family: TwitterChirp;
+
     &.light {
         font-weight: 400;
         color: rgb(83, 100, 113);
         font-size: 14px;
         letter-spacing: -0.8px;
     }
+
     &.dark {
         font-weight: bold;
     }
+
     &.darker {
         font-weight: bolder;
     }
+
     &.large {
         font-size: 20px;
     }
+
     &.larger {
         font-size: 28px;
+    }
+
+    &.justify {
+        text-align: justify;
+    }
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(29, 161, 242, 0.2);
+    /* Twitter blue color with opacity */
+    border-top: 4px solid #1da1f2;
+    /* Twitter blue color */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    /* Rotate the spinner */
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
     }
 }
