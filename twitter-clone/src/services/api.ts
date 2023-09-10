@@ -5,15 +5,12 @@ import { imageOrDefaultImage } from '../utils/functions';
 class ApiService {
     private readonly axiosInstance: AxiosInstance;
     private user?: string;
-    private baseURL: string = 'https://splendorous-shortbread-c74aa2.netlify.app';
+    private baseURL: string = 'https://twitter-clone-production-d4ce.up.railway.app';
 
     constructor() {
         this.axiosInstance = axios.create({
             baseURL: this.baseURL,
             timeout: 6000,
-            headers: {
-                "Access-Control-Allow-Origin": "*"
-            }
         });
     }
 
@@ -24,7 +21,7 @@ class ApiService {
             });
 
             this.axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${response.data.access_token}`;
-            this.baseURL = "https://splendorous-shortbread-c74aa2.netlify.app/api";
+            this.baseURL = "https://twitter-clone-production-d4ce.up.railway.app/api";
             this.user = response.data.id;
             return response.data;
         }
@@ -41,7 +38,7 @@ class ApiService {
             });
 
             this.axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${response.data.access_token}`;
-            this.baseURL = "https://splendorous-shortbread-c74aa2.netlify.app/api";
+            this.baseURL = "https://twitter-clone-production-d4ce.up.railway.app/api";
             this.user = response.data.id;
             return response.data;
         }

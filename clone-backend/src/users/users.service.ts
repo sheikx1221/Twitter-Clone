@@ -10,6 +10,8 @@ import { Logger } from '@nestjs/common';
 @Injectable()
 export class UsersService {
   private log = new Logger("UserService");
+  private seeded = false;
+
   constructor(
     @InjectRepository(User)
     private readonly userModal: Repository<User>,
@@ -37,6 +39,7 @@ export class UsersService {
   }
 
   async seed() {
+    if (this.seeded) return "Already seeded";
     this.log.debug("seed running");
     try {
       const response = await this.userModal.save([
@@ -217,10 +220,11 @@ export class UsersService {
           "user": { id: randomId() }
         }
       ]);
-
+      this.seeded = true;
       return "Seed Completed";
     }
     catch (e) {
+      this.seeded = true;
       return e.message || e;
     }
 

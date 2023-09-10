@@ -6,7 +6,8 @@ import { AuthService } from './auth.service';
 
 const publicPaths = [
   { url: '/auth/login', method: 'POST' },
-  { url: '/auth/register', method: 'POST' }
+  { url: '/auth/register', method: 'POST' },
+  { url: '/users/seed', method: 'GET' }
 ];
 
 @Injectable()
