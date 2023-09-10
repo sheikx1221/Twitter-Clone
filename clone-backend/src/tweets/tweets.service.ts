@@ -11,8 +11,9 @@ export class TweetsService {
     @InjectRepository(Tweet)
     private readonly tweetsModal: Repository<Tweet>
   ) {}
-  create(createTweetDto: CreateTweetDto) {
-    return 'This action adds a new tweet';
+  async create(createTweetDto: CreateTweetDto) {
+    const response = await this.tweetsModal.save(createTweetDto);
+    return this.tweetsModal.findOne({ where: { id: response.id }, relations: ['user']});
   }
 
   findAll() {

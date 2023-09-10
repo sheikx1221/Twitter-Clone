@@ -12,6 +12,7 @@ import { AppLink } from '../../components/link';
 export function HomePage() {
     const [loadTweets, setLoadTweets] = useState(LoadingState.LOADING);
     const [tweets, setTweets] = useState<Tweet[]>([]);
+    const [newTweet, setNewTweet] = useState<string>();
 
     async function getTweets() {
         setLoadTweets(LoadingState.LOADING);
@@ -23,6 +24,25 @@ export function HomePage() {
             setLoadTweets(LoadingState.NONE);
             setTweets(response);
         }
+    }
+
+    async function postTweet() {
+        if (!!newTweet) {
+
+            const response = await apiService.post<Tweet, Tweet>("/tweets", {
+                content: newTweet,
+                //@ts-ignore
+                user: { id: apiService.getUser()! },
+            });
+
+            if (response instanceof ServerError) {
+                alert("Unable to post tweet");
+            }
+            else {
+                setTweets([response, ...tweets]);
+                setNewTweet("");
+            }
+        } 
     }
 
     useEffect(() => {
@@ -51,7 +71,7 @@ export function HomePage() {
                     </div>
                     <div className="right-column">
                         <form className="top-row">
-                            <input placeholder="What's happening?" />
+                            <input style={{ color: 'black' }} value={newTweet} onChange={(e) => setNewTweet(e.target.value)} placeholder="What's happening?" />
                         </form>
                         <div className="bottom-row">
                             <div className="buttons">
@@ -99,7 +119,7 @@ export function HomePage() {
                                     </svg>
                                 </div>
                             </div>
-                            <button className="tweet-btn">Post</button>
+                            <button style={{ opacity: (newTweet?.length || 0) > 0 ? 1: 0.5 }} className="tweet-btn" onClick={postTweet}>Post</button>
                         </div>
                     </div>
                 </div>

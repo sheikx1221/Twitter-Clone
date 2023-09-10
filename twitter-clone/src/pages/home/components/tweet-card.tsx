@@ -8,7 +8,7 @@ export function TweetCard(props: Props) {
     return (
         <div className="post">
             <div className="left-column">
-                <img className="profile-image" src="https://pbs.twimg.com/profile_images/1412572443928109062/t83VHF1j_400x400.jpg" />
+                <img className="profile-image" src={props.tweet.user.profilePicture} />
             </div>
             <div className="right-column">
                 <article className="top-row">

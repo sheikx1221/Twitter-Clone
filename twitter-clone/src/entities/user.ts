@@ -5,5 +5,6 @@ export type User = {
     fullName: string,
     id: string,
     phone: string, 
-    username: string, 
+    username: string,
+    profilePicture: string
 }

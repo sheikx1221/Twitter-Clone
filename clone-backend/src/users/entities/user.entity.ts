@@ -24,6 +24,9 @@ export class User {
     @Column({ default: null, nullable: true })
     bio: string;
 
+    @Column()
+    profilePicture: string;
+
     @OneToMany(() => Tweet, (tweet) => tweet.user)
     tweets: Tweet[];
 
