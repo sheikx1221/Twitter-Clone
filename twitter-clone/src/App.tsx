@@ -7,7 +7,7 @@ import { LoginPage } from './pages/login';
 import './scss/styles.scss';
 
 function App() {
-  const [loading, setLoading] = useState(LoadingState.LOADING);
+  const [loading, setLoading] = useState(LoadingState.NONE);
   // const [user, setUser] = useState<User>();
   const navigate = useNavigate();
 
@@ -27,7 +27,7 @@ function App() {
       else navigate(location.pathname || "/home");
     }
 
-    init();
+    // init();
   }, []);
 
   return (

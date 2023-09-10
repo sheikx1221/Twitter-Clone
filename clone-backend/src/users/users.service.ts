@@ -44,7 +44,7 @@ export class UsersService {
           "username": "john_doe",
           "email": "john.doe@example.com",
           "phone": "1234567890",
-          "password": "$2a$10$0x5vc1M.gRrxoxwVDa53ReeHmnXzPTQFTO5A3QpQu4crXwv7.Q2va",
+          "password": "admin123",
           "fullName": "John Doe",
           "bio": "I love tweeting!"
         },
@@ -52,7 +52,7 @@ export class UsersService {
           "username": "alice_smith",
           "email": "alice.smith@example.com",
           "phone": "1234567891",
-          "password": "$2a$10$0x5vc1M.gRrxoxwVDa53ReeHmnXzPTQFTO5A3QpQu4crXwv7.Q2va",
+          "password": "admin123",
           "fullName": "Alice Smith",
           "bio": "Tech enthusiast and blogger"
         },
@@ -60,7 +60,7 @@ export class UsersService {
           "username": "jane_doe",
           "email": "jane.doe@example.com",
           "phone": "1234567892",
-          "password": "$2a$10$0x5vc1M.gRrxoxwVDa53ReeHmnXzPTQFTO5A3QpQu4crXwv7.Q2va",
+          "password": "admin123",
           "fullName": "Jane Doe",
           "bio": "Travel addict and food lover"
         },
@@ -68,7 +68,7 @@ export class UsersService {
           "username": "bob_johnson",
           "email": "bob.johnson@example.com",
           "phone": "1234567893",
-          "password": "$2a$10$0x5vc1M.gRrxoxwVDa53ReeHmnXzPTQFTO5A3QpQu4crXwv7.Q2va",
+          "password": "admin123",
           "fullName": "Bob Johnson",
           "bio": "Sports enthusiast and fitness guru"
         },
@@ -76,7 +76,7 @@ export class UsersService {
           "username": "emma_watson",
           "email": "emma.watson@example.com",
           "phone": "1234567894",
-          "password": "$2a$10$0x5vc1M.gRrxoxwVDa53ReeHmnXzPTQFTO5A3QpQu4crXwv7.Q2va",
+          "password": "admin123",
           "fullName": "Emma Watson",
           "bio": "Bookworm and movie buff"
         },
@@ -84,7 +84,7 @@ export class UsersService {
           "username": "michael_jackson",
           "email": "michael.jackson@example.com",
           "phone": "1234567895",
-          "password": "$2a$10$0x5vc1M.gRrxoxwVDa53ReeHmnXzPTQFTO5A3QpQu4crXwv7.Q2va",
+          "password": "admin123",
           "fullName": "Michael Jackson",
           "bio": "King of Pop"
         },
@@ -92,7 +92,7 @@ export class UsersService {
           "username": "lisa_simpson",
           "email": "lisa.simpson@example.com",
           "phone": "1234567896",
-          "password": "$2a$10$0x5vc1M.gRrxoxwVDa53ReeHmnXzPTQFTO5A3QpQu4crXwv7.Q2va",
+          "password": "admin123",
           "fullName": "Lisa Simpson",
           "bio": "Student and saxophonist"
         },
@@ -100,7 +100,7 @@ export class UsersService {
           "username": "peter_parker",
           "email": "peter.parker@example.com",
           "phone": "1234567897",
-          "password": "$2a$10$0x5vc1M.gRrxoxwVDa53ReeHmnXzPTQFTO5A3QpQu4crXwv7.Q2va",
+          "password": "admin123",
           "fullName": "Peter Parker",
           "bio": "Friendly neighborhood Spider-Man"
         },
@@ -108,7 +108,7 @@ export class UsersService {
           "username": "mary_smith",
           "email": "mary.smith@example.com",
           "phone": "1234567898",
-          "password": "$2a$10$0x5vc1M.gRrxoxwVDa53ReeHmnXzPTQFTO5A3QpQu4crXwv7.Q2va",
+          "password": "admin123",
           "fullName": "Mary Smith",
           "bio": "Art lover and painter"
         },
@@ -116,7 +116,7 @@ export class UsersService {
           "username": "david_jones",
           "email": "david.jones@example.com",
           "phone": "1234567899",
-          "password": "$2a$10$0x5vc1M.gRrxoxwVDa53ReeHmnXzPTQFTO5A3QpQu4crXwv7.Q2va",
+          "password": "admin123",
           "fullName": "David Jones",
           "bio": "Nature explorer and photographer"
         }

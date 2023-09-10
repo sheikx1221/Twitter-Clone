@@ -1,5 +1,5 @@
 import { Tweet } from 'src/tweets/entities/tweet.entity';
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, JoinTable } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, JoinTable, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm';
 
 @Entity('users')
 export class User {
@@ -33,4 +33,13 @@ export class User {
 
     @ManyToMany(() => User, (user) => user.followers)
     following: User[];
+
+    @CreateDateColumn({ type: "timestamp with time zone" })
+    createdAt: Date | string;
+
+    @UpdateDateColumn({ type: "timestamp with time zone" })
+    updatedAt: Date | string;
+
+    @DeleteDateColumn({ type: "timestamp with time zone" })
+    deletedAt: Date | string;
 }

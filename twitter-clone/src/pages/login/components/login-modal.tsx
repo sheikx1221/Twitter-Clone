@@ -5,6 +5,9 @@ import { AppInput } from "../../../components/input";
 import { AppLink } from "../../../components/link";
 import { AppLogo } from "../../../components/logo";
 import './login-modal.scss';
+import { apiService } from "../../../services/api";
+import { ServerError } from "../../../entities/utils";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
     closeModal: () => void;
@@ -12,7 +15,22 @@ interface Props {
 }
 export function LoginModal(props: Props) {
     const [credentials, setCredentials] = useState<string>();
-    // const [password, setPassword] = useState<string>();
+    const [password, setPassword] = useState<string>("admin123");
+    const navigate = useNavigate();
+
+    async function login() {
+        if (credentials && password) {
+            const response = await apiService.login(credentials, password);
+            if (response instanceof ServerError) {
+                alert(response.toString());
+            }
+            else {
+                props.closeModal();
+                navigate("/home");
+            }
+        }
+        else alert("Complete information first!");
+    }
 
     return (
         <div
@@ -63,7 +81,7 @@ export function LoginModal(props: Props) {
                         <AppButton
                             taste="dark"
                             title="Next"
-                            onClick={() => { }}
+                            onClick={login}
                         />
                         <div className="my-2"></div>
                         <AppButton
